@@ -1,0 +1,8 @@
+SELECT ro  
+,KANWIL
+,sum(saldo_akhir) as saldo
+  FROM [pawning].[dbo].[Data_DPK_20190531] a left join [pawning].[dbo].[2019-06-17.PencairanPembiayaan] b  ON a.CIF_NO=b.NOMORCIF
+  left join pawning.dbo.AREA c   ON b.KODECABANGBARU=c.Kode_cabang
+  where a.type_product='deposito' and b.LOANTYPE IN('MUR0011','MUR0013','MUR0014','MUR0016','MUR0018','RHN0001','RHN0002') 
+  group by ro  
+,KANWIL
